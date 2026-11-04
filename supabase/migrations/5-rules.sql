@@ -24,4 +24,14 @@ create policy "Executors can update their tasks" on tasks for update using (
 
 -- ИСТОРИЯ: Триггер должен иметь возможность писать, пользователи - читать
 create policy "Allow insert for task history" on task_history for insert with check (true);
-create policy "Allow select for task history" on task_history for select using (true);
+-- Исполнитель не может прочитать или изменить чужие задачи
+create policy "Users can view history of their tasks" on task_history for select using (
+  exists (
+    select 1 from tasks 
+    where tasks.id = task_history.task_id 
+    and (
+      (select role from profiles where id = auth.uid()) = 'manager'
+      or tasks.assignee_id = auth.uid()
+    )
+  )
+);

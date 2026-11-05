@@ -6,7 +6,7 @@ export interface Profile {
   role: Role;
 }
 
-export interface Object {
+export interface ProjectObject {
   id: string;
   name: string;
   address: string;

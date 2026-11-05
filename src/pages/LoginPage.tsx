@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/card";
 
 export const LoginPage = () => {
-  const { session, loading } = useAuth();
+  const { session, profile, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export const LoginPage = () => {
     return (
       <div className="p-8 text-center text-muted-foreground">Загрузка...</div>
     );
-  if (session) return <Navigate to="/" replace />;
+  if (session && profile) return <Navigate to="/" replace />;
 
   const handleLogin = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

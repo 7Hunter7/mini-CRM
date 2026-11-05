@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       .from("profiles")
       .select("*")
       .eq("id", session.user.id)
-      .single()
+      .maybeSingle()
       .then(({ data, error }) => {
         if (cancelled) return;
         if (error) console.error("Profile fetch error:", error);

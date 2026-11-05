@@ -16,11 +16,13 @@
    npm install
    ```
 
-2. Создайте файл `.env` в корне проекта и добавьте ключи из вашего Supabase-проекта (Settings → API):
+2. Создайте файл `.env` в корне проекта. Возьмите **Project URL** из Supabase (Project Settings → Data API → Project URL) и **Publishable key** (Project Settings → API Keys → Publishable key). 
+
+   > **Важно:** `VITE_SUPABASE_URL` должен быть **без** `/rest/v1/` на конце. Библиотека `supabase-js` добавляет нужные пути автоматически.
 
    ```env
-   VITE_SUPABASE_URL=https://your-project.supabase.co
-   VITE_SUPABASE_ANON_KEY=your_anon_key
+   VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+   VITE_SUPABASE_ANON_KEY=your_publishable_key
    ```
 
    > Используйте только `anon` ключ. Ключ `service_role` использовать на фронтенде **запрещено** (это нарушает безопасность).
@@ -38,7 +40,7 @@
    npm run build
    ```
 
-## 🗄 Развертывание базы данных
+## Развертывание базы данных
 
 Все SQL-миграции находятся в папке `supabase/migrations/`. Выполните их **по порядку** в SQL Editor вашего Supabase-проекта:
 

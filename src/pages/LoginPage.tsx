@@ -51,7 +51,7 @@ export const LoginPage = () => {
             Введите email и пароль
           </CardDescription>
         </CardHeader>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="flex flex-col gap-6">
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>

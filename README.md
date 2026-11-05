@@ -2,6 +2,8 @@
 
 Небольшая CRM для строительной компании: руководитель ставит задачи по объектам (стройкам), исполнители выполняют их и отдают на проверку.
 
+Демо: https://new-crm-mini.netlify.app/login
+
 ## Стек технологий
 
 - **Frontend:** React 19, TypeScript, Vite, Tailwind CSS v4, shadcn/ui, TanStack Query, React Router

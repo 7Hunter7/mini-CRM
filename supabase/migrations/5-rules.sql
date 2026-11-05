@@ -1,4 +1,14 @@
 -- ПРАВИЛА ДОСТУПА (RLS)
+-- Разрешаем авторизованным пользователям читать свой профиль
+create policy "Users can view own profile"
+on profiles for select
+using (auth.uid() = id);
+
+-- Менеджер может видеть всех пользователей
+create policy "Managers can view all profiles"
+on profiles for select
+using ((select role from profiles where id = auth.uid()) = 'manager');
+
 -- Постановщик видит всё
 create policy "Managers can do everything on objects" on objects for all using (
   (select role from profiles where id = auth.uid()) = 'manager'

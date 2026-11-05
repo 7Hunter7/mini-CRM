@@ -193,7 +193,7 @@ export const ObjectPage = () => {
             </div>
             <div className="space-y-2">
               <Label>Исполнитель</Label>
-              <Select value={assigneeId} onValueChange={setAssigneeId}>
+              <Select value={assigneeId} onValueChange={(val) => setAssigneeId(val || "")}>
                 <SelectTrigger>
                   <SelectValue placeholder="Выберите исполнителя" />
                 </SelectTrigger>

@@ -6,6 +6,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ObjectPage } from "./pages/ObjectPage";
 import { TaskPage } from "./pages/TaskPage";
+import { MyTasksPage } from "./pages/MyTasksPage";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,10 @@ export default function App() {
               <Route path="/" element={<DashboardPage />} />
               <Route path="/objects/:id" element={<ObjectPage />} />
               <Route path="/tasks/:id" element={<TaskPage />} />
+            </Route>
+            
+            <Route element={<ProtectedRoute allowedRoles={["executor"]} />}>
+              <Route path="/my-tasks" element={<MyTasksPage />} />
             </Route>
 
             <Route path="*" element={<Navigate to="/" replace />} />

@@ -41,6 +41,12 @@ export const MyTasksPage = () => {
   return (
     <div className="min-h-screen bg-muted/20 p-4 md:p-8">
       <div className="max-w-3xl mx-auto">
+        <Link
+          to="/"
+          className="text-sm text-muted-foreground hover:underline mb-4 inline-block"
+        >
+          ← Назад к объектам
+        </Link>
         <h1 className="text-2xl font-bold mb-6">Мои задачи</h1>
 
         {tasks?.length === 0 && (

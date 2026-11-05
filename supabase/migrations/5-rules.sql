@@ -5,9 +5,23 @@ on profiles for select
 using (auth.uid() = id);
 
 -- Менеджер может видеть всех пользователей
+-- 1. Создаем функцию, которая безопасно проверяет роль текущего пользователя
+create or replace function public.is_manager()
+returns boolean
+language sql
+security definer
+set search_path = public
+stable
+as $$
+  select exists (
+    select 1 from profiles
+    where id = auth.uid() and role = 'manager'
+  );
+$$;
+-- 2. Создаем политику через функцию
 create policy "Managers can view all profiles"
 on profiles for select
-using ((select role from profiles where id = auth.uid()) = 'manager');
+using ( public.is_manager() );
 
 -- Постановщик видит всё
 create policy "Managers can do everything on objects" on objects for all using (
